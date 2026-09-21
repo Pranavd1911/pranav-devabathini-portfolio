@@ -76,7 +76,7 @@ window.PORTFOLIO_VOICES = Object.freeze({
       },
       "journey": {
         "title": "My journey",
-        "text": "My journey started with a Bachelor of Technology in Computer Science from Om Sterling Global University. I completed two graduate quarters in Technology Innovation at the University of Washington before discontinuing my studies. I'm now pursuing a Master of Science in Information Technology Management at Webster University, with expected completion in twenty twenty-seven.",
+        "text": "My journey started with a Bachelor of Technology in Computer Science from OSGU. I completed two graduate quarters in Technology Innovation at the University of Washington before discontinuing my studies. I'm now pursuing a Master of Science in Information Technology Management at Webster University, with expected completion in twenty twenty-seven.",
         "src": "assets/audio/neural/young/journey.mp3",
         "duration": 21.192,
         "mouthHz": 12,
@@ -85,7 +85,7 @@ window.PORTFOLIO_VOICES = Object.freeze({
           {
             "start": 0.05,
             "end": 6.056,
-            "text": "My journey started with a Bachelor of Technology in Computer Science from Om Sterling Global University."
+            "text": "My journey started with a Bachelor of Technology in Computer Science from OSGU."
           },
           {
             "start": 6.056,
@@ -347,7 +347,7 @@ window.PORTFOLIO_VOICES = Object.freeze({
       },
       "journey": {
         "title": "My journey",
-        "text": "My journey started with a Bachelor of Technology in Computer Science from Om Sterling Global University. I completed two graduate quarters in Technology Innovation at the University of Washington before discontinuing my studies. I'm now pursuing a Master of Science in Information Technology Management at Webster University, with expected completion in twenty twenty-seven.",
+        "text": "My journey started with a Bachelor of Technology in Computer Science from OSGU. I completed two graduate quarters in Technology Innovation at the University of Washington before discontinuing my studies. I'm now pursuing a Master of Science in Information Technology Management at Webster University, with expected completion in twenty twenty-seven.",
         "src": "assets/audio/neural/india/journey.mp3",
         "duration": 28.824,
         "mouthHz": 12,
@@ -356,7 +356,7 @@ window.PORTFOLIO_VOICES = Object.freeze({
           {
             "start": 0.1,
             "end": 8.22,
-            "text": "My journey started with a Bachelor of Technology in Computer Science from Om Sterling Global University."
+            "text": "My journey started with a Bachelor of Technology in Computer Science from OSGU."
           },
           {
             "start": 8.17,
@@ -618,7 +618,7 @@ window.PORTFOLIO_VOICES = Object.freeze({
       },
       "journey": {
         "title": "My journey",
-        "text": "My journey started with a Bachelor of Technology in Computer Science from Om Sterling Global University. I completed two graduate quarters in Technology Innovation at the University of Washington before discontinuing my studies. I'm now pursuing a Master of Science in Information Technology Management at Webster University, with expected completion in twenty twenty-seven.",
+        "text": "My journey started with a Bachelor of Technology in Computer Science from OSGU. I completed two graduate quarters in Technology Innovation at the University of Washington before discontinuing my studies. I'm now pursuing a Master of Science in Information Technology Management at Webster University, with expected completion in twenty twenty-seven.",
         "src": "assets/audio/neural/us/journey.mp3",
         "duration": 23.352,
         "mouthHz": 12,
@@ -627,7 +627,7 @@ window.PORTFOLIO_VOICES = Object.freeze({
           {
             "start": 0.1,
             "end": 6.893,
-            "text": "My journey started with a Bachelor of Technology in Computer Science from Om Sterling Global University."
+            "text": "My journey started with a Bachelor of Technology in Computer Science from OSGU."
           },
           {
             "start": 6.843,
