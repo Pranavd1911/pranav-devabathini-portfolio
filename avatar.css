@@ -1,0 +1,289 @@
+/* One transparent image, three equal portrait frames: idle / wave / wave. */
+.avatar-art {
+  display: block;
+  aspect-ratio: 2 / 3;
+  background: url('assets/pranav-avatar-sprite.png') 0 50% / 300% 100% no-repeat;
+  transform-origin: 50% 88%;
+  transform: perspective(650px) rotateY(var(--avatar-look, 0deg)) rotate(var(--avatar-lean, 0deg));
+  transition: transform .22s ease-out;
+  pointer-events: none;
+}
+.avatar-companion {
+  --avatar-width: 116px;
+  position: fixed;
+  right: 24px;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  width: calc(var(--avatar-width) + 12px);
+  z-index: 35;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.avatar-companion:not(.is-ready) { display: none; }
+.avatar-drag {
+  display: block;
+  position: relative;
+  width: var(--avatar-width);
+  padding: 0;
+  margin: 12px auto 0;
+  border: 0;
+  border-radius: 40%;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+}
+.avatar-drag::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  bottom: 3px;
+  left: 23%;
+  width: 54%;
+  height: 8px;
+  border-radius: 50%;
+  background: #2a3a2120;
+  filter: blur(4px);
+}
+.avatar-drag .avatar-art { width: 100%; animation: avatar-idle 5s ease-in-out infinite; }
+.avatar-companion.is-dragging .avatar-drag { cursor: grabbing; }
+.avatar-companion.is-dragging .avatar-art { animation: none; transform: rotate(-4deg); }
+.avatar-help {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 3px auto 0;
+  padding: 5px 8px;
+  border: 1px solid #d9dcd0d9;
+  border-radius: 20px;
+  background: #fffdf8ed;
+  color: #53604b;
+  font-size: 9px;
+  line-height: 1.3;
+  text-align: center;
+  box-shadow: 0 3px 14px #24341a08;
+  pointer-events: none;
+}
+.avatar-dismiss {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--line, #d9dcd0);
+  border-radius: 50%;
+  background: #fffdf8f2;
+  color: var(--muted, #686c62);
+  font-size: 18px;
+  line-height: 1;
+  box-shadow: 0 3px 12px #24341a08;
+}
+.avatar-dismiss:hover { background: var(--green, #d2eaa2); color: var(--ink, #242821); }
+.avatar-message {
+  position: fixed;
+  width: 260px;
+  max-width: calc(100vw - 24px);
+  padding: 18px;
+  border: 1px solid #d4dccb;
+  border-radius: 16px;
+  background: #fffdf8;
+  color: var(--ink, #242821);
+  box-shadow: 0 12px 36px #24341a1a;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.avatar-message p { margin: 0; font-size: 12px; line-height: 1.7; }
+.avatar-message nav { display: flex; gap: 8px; margin-top: 13px; }
+.avatar-message a {
+  display: inline-flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+  padding: 9px 8px;
+  border: 1px solid #d4dccb;
+  border-radius: 6px;
+  font-size: 10px;
+  text-align: center;
+}
+.avatar-message a:first-child { background: #eaf1de; border-color: #d5e0c5; }
+.avatar-message a:hover { background: var(--green, #d2eaa2); }
+.avatar-restore {
+  position: fixed;
+  right: 22px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #c7d5b8;
+  border-radius: 25px;
+  background: #edf3e3;
+  color: #3a5034;
+  box-shadow: 0 5px 20px #24341a12;
+  font-size: 11px;
+}
+.avatar-restore > span { font-size: 20px; }
+.avatar-restore:hover { background: var(--green, #d2eaa2); }
+.is-waving .avatar-art { animation: avatar-wave .42s steps(1, end) infinite; }
+.dialog-open .avatar-companion, .dialog-open .avatar-restore { visibility: hidden; }
+@keyframes avatar-idle {
+  0%, 100% { transform: translateY(0) perspective(650px) rotateY(var(--avatar-look, 0deg)) rotate(var(--avatar-lean, 0deg)); }
+  50% { transform: translateY(-5px) perspective(650px) rotateY(var(--avatar-look, 0deg)) rotate(var(--avatar-lean, 0deg)); }
+}
+@keyframes avatar-wave {
+  0%, 100% { background-position-x: 50%; }
+  50% { background-position-x: 100%; }
+}
+.paused .avatar-art { animation: none !important; transform: none !important; }
+.paused .is-waving .avatar-art { background-position-x: 50%; }
+@media (max-width: 600px) {
+  .avatar-companion { --avatar-width: 86px; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); }
+  .avatar-help { padding: 4px 5px; font-size: 8px; }
+  .avatar-restore { right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); }
+  .avatar-message { width: 240px; padding: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .avatar-art { animation: none !important; transform: none !important; transition: none !important; }
+  .is-waving .avatar-art { background-position-x: 50%; }
+}
+@media print { .avatar-companion, .avatar-restore { display: none !important; } }
+
+/* The avatar takes the main stage in the opening view. */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: none;
+  min-height: max(650px, calc(100svh - 94px));
+  padding: 75px max(60px, calc((100vw - 1200px) / 2));
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-copy { position: relative; z-index: 3; width: 41%; max-width: 485px; }
+.hero h1 { font-size: clamp(45px, 4.2vw, 61px); }
+.hero .intro { max-width: 400px; }
+.hero .portrait-wrap {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 64%; max-width: none;
+  perspective: none;
+}
+.hero .portrait {
+  width: 100%; height: 100%;
+  border-radius: 0; background: transparent;
+  transform: none !important;
+  transition: none;
+}
+.hero .portrait::before {
+  content: ''; position: absolute; inset: 2% -8% 0 0;
+  background: radial-gradient(ellipse at 57% 54%, var(--stage-glow) 0%, transparent 68%);
+}
+.hero .portrait-grid { background-image: linear-gradient(var(--stage-grid) 1px, transparent 1px), linear-gradient(90deg, var(--stage-grid) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse, #000, transparent 70%); }
+.hero .hero-avatar {
+  --hero-avatar-width: min(70vw, 1050px);
+  width: var(--hero-avatar-width); height: auto; aspect-ratio: 2 / 3;
+  left: calc(50% - var(--hero-avatar-width) / 2); top: -25px;
+  z-index: 1;
+}
+.hero .orbit-label { position: absolute; right: 12%; top: 30px; z-index: 2; font-size: 8px; }
+.hero .portrait-top, .hero .portrait-bottom, .hero .monogram-orbit { display: none; }
+.hero .floating-tag { left: 9%; bottom: 30%; z-index: 3; font-size: 12px; }
+.hero .floating-note { right: 6%; top: 30%; z-index: 3; }
+.hero .portrait-controls { position: absolute; bottom: 101px; left: 50%; transform: translateX(-50%); z-index: 4; width: max-content; max-width: 95%; margin: 0; padding: 8px 15px; gap: 18px; border-radius: 30px; background: var(--surface); box-shadow: 0 5px 30px var(--soft-shadow); }
+.hero .portrait-controls > span { font-size: 9px; }
+.hero .portrait-controls button { padding: 4px 0; white-space: nowrap; font-size: 10px; }
+.gesture-bar { display: flex; gap: 5px; padding: 7px; border: 1px solid var(--line); border-radius: 40px; background: var(--surface); box-shadow: 0 8px 30px var(--soft-shadow); }
+.hero .portrait-wrap > .gesture-bar { position: absolute; bottom: 43px; left: 50%; transform: translateX(-50%); z-index: 4; width: max-content; max-width: calc(100% - 20px); }
+.gesture-bar button { display: inline-flex; justify-content: center; align-items: center; gap: 7px; min-height: 36px; border: 0; border-radius: 24px; padding: 9px 13px; background: transparent; font-size: 11px; white-space: nowrap; }
+.gesture-bar button:hover { background: var(--surface-alt); }
+.gesture-bar button[aria-pressed='true'] { color: var(--button-ink); background: var(--button-bg); }
+.gesture-bar button > span { font-size: 15px; }
+.gesture-status { position: absolute; bottom: 16px; left: 0; width: 100%; text-align: center; margin: 0; font-size: 9px; color: var(--muted); }
+.avatar-companion { --avatar-width: 150px; }
+.avatar-art[data-gesture='thumbs'], .avatar-art[data-gesture='think'], .avatar-art[data-gesture='celebrate'], .avatar-art[data-gesture='dance'] { background-image: url('assets/pranav-avatar-gestures.png'); animation: none; }
+.avatar-art[data-gesture='thumbs'] { background-position-x: 0%; }
+.avatar-art[data-gesture='think'] { background-position-x: 50%; }
+.avatar-art[data-gesture='celebrate'], .avatar-art[data-gesture='dance'] { background-position-x: 100%; }
+.avatar-art[data-gesture='thumbs'] { animation: avatar-approve .65s ease-out; }
+.avatar-art[data-gesture='think'] { animation: avatar-think 2s ease-in-out; }
+.avatar-art[data-gesture='celebrate'] { animation: avatar-cheer .7s ease-in-out 3; }
+.avatar-art[data-gesture='dance'] { animation: avatar-dance .72s ease-in-out infinite; }
+.avatar-stage {
+  width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0;
+  border: 0; border-radius: 0; padding: 0; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+}
+.avatar-stage::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, var(--stage-glow), transparent 65%); pointer-events: none; }
+.stage-header { position: absolute; z-index: 3; left: 40px; right: 40px; top: 28px; display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+.stage-header .eyebrow { font-size: 8px; margin: 0 0 5px; }
+.stage-header h2 { font-size: 27px; }
+#close-stage { border: 1px solid var(--line); background: var(--surface); padding: 12px 20px; border-radius: 30px; font-size: 12px; }
+.stage-character { display: block; position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; padding: 0; border: 0; overflow: hidden; }
+.stage-character .avatar-art { width: min(88vh, 100vw); height: auto; position: absolute; left: 50%; margin-left: max(-44vh, -50vw); top: -2vh; }
+.stage-controls { position: absolute; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); z-index: 3; text-align: center; width: max-content; max-width: calc(100% - 24px); }
+.stage-controls > p { display: inline-block; font-size: 11px; margin: 0 0 15px; color: var(--ink); padding: 9px 17px; background: var(--surface); border-radius: 20px; }
+#stage-motion { border: 0; border-radius: 20px; background: var(--surface); color: var(--muted); padding: 9px 16px; margin-top: 12px; font-size: 10px; }
+body.stage-open { overflow: hidden; }
+.stage-open .avatar-companion, .stage-open .avatar-restore { visibility: hidden; }
+@keyframes avatar-approve { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px) rotate(-3deg); } }
+@keyframes avatar-think { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(3deg); } }
+@keyframes avatar-cheer { 0%, 100% { transform: translateY(0) scale(1); } 45% { transform: translateY(-20px) scale(1.02); } }
+@keyframes avatar-dance { 0%, 100% { transform: rotate(-5deg) translateY(0); } 25% { transform: rotate(0) translateY(-10px); } 50% { transform: rotate(5deg) translateY(0); } 75% { transform: rotate(0) translateY(-10px); } }
+@media (max-width: 1050px) {
+  .hero { padding-inline: 32px; }
+  .hero-copy { width: 43%; }
+  .hero h1 { font-size: 44px; }
+  .hero .portrait-wrap { width: 61%; }
+  .hero .hero-avatar { --hero-avatar-width: 85vw; top: 18px; }
+  .hero .floating-tag { left: 5%; }
+  .hero .gesture-bar button { font-size: 10px; padding: 8px 9px; gap: 4px; }
+  .hero .portrait-controls { gap: 12px; }
+  .hero .portrait-controls > span { display: none; }
+}
+@media (max-width: 800px) {
+  .hero { min-height: 710px; }
+  .hero h1 { font-size: 38px; }
+  .hero .hero-actions { gap: 12px; }
+  .hero .hero-actions .button { padding: 14px 16px; gap: 15px; }
+  .hero .floating-note { right: 3%; top: 23%; }
+  .hero .floating-tag { bottom: 25%; }
+  .hero .gesture-bar { flex-wrap: wrap; justify-content: center; border-radius: 20px; width: 310px !important; }
+  .hero .portrait-controls { bottom: 145px; }
+  .hero .portrait-wrap > .gesture-bar { bottom: 45px; }
+}
+@media (max-width: 600px) {
+  .hero { display: flex; flex-direction: column; min-height: 0; gap: 0; padding: 0 22px 42px; overflow: hidden; }
+  .hero .portrait-wrap { position: relative; order: -1; width: calc(100% + 44px); height: max(570px, calc(86svh - 76px)); flex-shrink: 0; margin-bottom: 40px; }
+  .hero .hero-avatar { --hero-avatar-width: 145vw; top: -12px; }
+  .hero-copy { width: 100%; max-width: none; }
+  .hero h1 { font-size: clamp(41px, 11.5vw, 60px); }
+  .hero .orbit-label { right: 22px; top: 20px; font-size: 7px; }
+  .hero .floating-note { right: 3%; top: 24%; }
+  .hero .floating-tag { left: 4%; bottom: 36%; font-size: 10px; }
+  .hero .portrait-controls { bottom: 147px; }
+  .hero .gesture-bar button { font-size: 10px; min-height: 35px; padding: 8px 12px; }
+  .hero .portrait-wrap > .gesture-bar { bottom: 42px; }
+  .hero .gesture-status { bottom: 16px; font-size: 9px; }
+  .avatar-companion { --avatar-width: 96px; }
+  .stage-header { top: 20px; left: 20px; right: 20px; }
+  .stage-header h2 { font-size: 22px; }
+  .stage-header .eyebrow { font-size: 7px; }
+  #close-stage { padding: 10px 14px; font-size: 11px; }
+  .stage-character .avatar-art { width: 160vw; margin-left: -80vw; top: 7vh; }
+  .stage-controls .gesture-bar { flex-wrap: wrap; justify-content: center; width: 320px; max-width: 100%; border-radius: 22px; }
+  .stage-controls .gesture-bar button { font-size: 11px; padding: 8px 12px; }
+  .stage-controls { width: min(340px, calc(100vw - 24px)); bottom: max(14px, env(safe-area-inset-bottom)); }
+  .stage-controls > p { font-size: 10px; margin-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .avatar-art[data-gesture] { animation: none !important; transform: none !important; } }
+@media print { .hero { min-height: 0; } .hero-copy { width: 100%; } .gesture-bar, .avatar-stage { display: none !important; } }
+.hero .gesture-status { left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); padding: 5px 12px; border-radius: 20px; background: var(--surface); }
+@media (max-width: 600px) {
+  .stage-character .avatar-art { width: 130vw; margin-left: -65vw; top: 9vh; }
+}

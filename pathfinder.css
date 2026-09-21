@@ -1,0 +1,39 @@
+.pathfinder { overflow: hidden; }
+.pathfinder-heading { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 50px; }
+.pathfinder-heading h2 { margin: 0; }
+.pathfinder-heading > p { max-width: 300px; margin: 0 0 6px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.pathfinder-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: 18px; }
+.pathfinder-options { display: grid; align-content: start; gap: 8px; }
+.path-option { display: grid; grid-template-columns: 37px 1fr 20px; align-items: center; gap: 14px; min-height: 85px; padding: 17px 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); text-align: left; cursor: pointer; transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+.path-option:hover { border-color: var(--accent); transform: translateX(5px); }
+.path-option.active { border-color: var(--accent); background: var(--accent); transform: translateX(9px); }
+.path-option.active .path-number, .path-option.active small { color: var(--ink); }
+.path-option strong { display: block; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 600; }
+.path-option small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; }
+.path-number { color: var(--accent); font: 11px 'DM Mono', monospace; }
+.pathfinder-result { position: relative; min-height: 310px; overflow: hidden; padding: 34px; border-radius: 14px; background: var(--ink); color: var(--paper); isolation: isolate; }
+.pathfinder-result:after { position: absolute; right: -80px; bottom: -100px; width: 280px; height: 280px; border: 1px solid rgba(201,240,82,.3); border-radius: 50%; content: ''; z-index: -1; }
+.pathfinder-result h3 { max-width: 450px; margin: 14px 0 8px; font-size: clamp(1.7rem, 3vw, 2.7rem); line-height: 1.03; font-weight: 500; }
+.pathfinder-result > p { max-width: 450px; margin: 0; color: rgba(245,243,237,.67); font-size: 12px; line-height: 1.7; }
+.pathfinder-result .game-badge { color: var(--lime); }
+.pathfinder-orbit { position: absolute; top: 20px; right: 34px; width: 105px; height: 105px; border: 1px solid rgba(201,240,82,.45); border-radius: 50%; animation: path-spin 9s linear infinite; }
+.pathfinder-orbit:before { position: absolute; inset: 14px -17px; border: 1px solid rgba(255,118,92,.6); border-radius: 50%; content: ''; transform: rotate(55deg); }
+.pathfinder-orbit span, .pathfinder-orbit i { position: absolute; display: block; width: 9px; height: 9px; border-radius: 50%; background: var(--lime); }
+.pathfinder-orbit span { top: 4px; left: 23px; }
+.pathfinder-orbit i { right: -4px; bottom: 23px; background: var(--coral); }
+.path-stops { display: grid; gap: 7px; margin: 24px 0 25px; padding: 0; list-style: none; counter-reset: stop; }
+.path-stops li { display: flex; align-items: center; gap: 9px; color: rgba(245,243,237,.82); font-size: 11px; }
+.path-stops li:before { display: grid; place-items: center; width: 20px; height: 20px; border: 1px solid rgba(201,240,82,.5); border-radius: 50%; color: var(--lime); content: counter(stop); counter-increment: stop; font: 9px 'DM Mono', monospace; }
+.pathfinder-result .button { border-color: var(--lime); color: var(--lime); }
+.pathfinder-result .button:hover { background: var(--lime); color: var(--ink); }
+@keyframes path-spin { to { transform: rotate(360deg); } }
+@media (max-width: 700px) {
+  .pathfinder-heading { display: block; margin-bottom: 32px; }
+  .pathfinder-heading > p { margin-top: 17px; }
+  .pathfinder-layout { grid-template-columns: 1fr; }
+  .path-option.active, .path-option:hover { transform: none; }
+  .pathfinder-result { min-height: 345px; padding: 26px 22px; }
+  .pathfinder-orbit { right: 20px; width: 80px; height: 80px; }
+}
+@media (prefers-reduced-motion: reduce) { .pathfinder-orbit { animation: none; } }
+@media print { .pathfinder { display: none !important; } }

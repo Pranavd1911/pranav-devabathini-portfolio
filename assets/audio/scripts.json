@@ -1,0 +1,13 @@
+{
+  "intro": {"title":"Meet Pranav","text":"Hi, I'm Pranav. I build AI-powered products, and I'm the founder of Learning Destiny. I started in Hyderabad, and I'm now based in Austin, Texas. I'm pursuing a master's in Information Technology Management at Webster University. Explore my projects, or say hello. I'd love to connect."},
+  "projects": {"title":"My projects","text":"My projects focus on helping people take their next step. I developed an AI Resume Reviewer that offers feedback, A T S scoring, and improvement suggestions. I also designed an AI Interview Coach for mock interviews and personalized feedback. Learning Destiny AI is my overseas education assistant, designed for university matching, statement of purpose guidance, visa checklists, and application tracking."},
+  "journey": {"title":"My journey","text":"My journey started with a Bachelor of Technology in Computer Science from Om Sterling Global University. I completed two graduate quarters in Technology Innovation at the University of Washington before discontinuing my studies. I'm now pursuing a Master of Science in Information Technology Management at Webster University, with expected completion in twenty twenty-seven."},
+  "wave": {"title":"Hello there","text":"Hey there! Great to see you. Welcome to my portfolio."},
+  "thumbs": {"title":"Thumbs up","text":"Good ideas deserve a thumbs-up. Let's build something useful!"},
+  "think": {"title":"Thinking","text":"Thinking about the next big idea. Every good product starts with a question."},
+  "celebrate": {"title":"Celebrate","text":"A little win is worth celebrating. Here's to the next one!"},
+  "dance": {"title":"A little rhythm","text":"A little rhythm between product briefs. Sometimes the best ideas need a dance break."},
+  "greeting-0": {"title":"Hello, I'm Pranav","text":"Hey, I'm Pranav! I turn curious ideas into useful products. Take a look around."},
+  "greeting-1": {"title":"Explore my work","text":"Curious about my work? Explore my AI projects, or say hello. I'd love to connect."},
+  "greeting-2": {"title":"A little about me","text":"A little about me: product thinking, AI, and a love for building things with people."}
+}

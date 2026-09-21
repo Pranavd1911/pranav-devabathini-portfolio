@@ -1,0 +1,61 @@
+:root {
+  --surface: #faf9f4;
+  --surface-alt: #e9eddf;
+  --header-bg: #f5f3edf5;
+  --button-bg: #242821;
+  --button-ink: #ffffff;
+  --stage-glow: #d9e9bd;
+  --stage-grid: #46623915;
+  --soft-shadow: #24341a15;
+}
+:root[data-theme='dark'] {
+  --paper: #151a16;
+  --ink: #edf0e5;
+  --muted: #a8b1a3;
+  --line: #364136;
+  --green: #354b2d;
+  --accent: #c5e39e;
+  --surface: #1c241d;
+  --surface-alt: #253026;
+  --header-bg: #151a16f2;
+  --button-bg: #c5e39e;
+  --button-ink: #1b2717;
+  --stage-glow: #314630;
+  --stage-grid: #c5e39e12;
+  --soft-shadow: #00000040;
+}
+.header { background: var(--header-bg); }
+.header-actions { display: flex; align-items: center; gap: 26px; }
+.theme-toggle { display: inline-flex; align-items: center; gap: 9px; padding: 10px 13px; min-height: 40px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 30px; font-size: 11px; white-space: nowrap; }
+.theme-toggle > span:first-child { font-size: 17px; line-height: 1; }
+.button { background: var(--button-bg); color: var(--button-ink); }
+.button:hover { background: var(--accent); color: var(--paper); }
+.project-card, .skill-chips li { background: var(--surface); }
+.impact-strip, .featured-role, .dialog-role, .connect { background: var(--surface-alt); }
+.impact-strip > div { border-color: var(--line); }
+.impact-strip > div > span:not(.eyebrow), .connect > p:not(.eyebrow), .contact-details { color: var(--muted); }
+.contact-details, #copy-email, .connect .text-link { border-color: var(--line); }
+.degree-type.current { color: var(--accent); border-color: var(--line); background: var(--surface-alt); }
+.avatar-help, .avatar-dismiss, .avatar-message { color: var(--ink); background: var(--surface); border-color: var(--line); box-shadow: 0 8px 25px var(--soft-shadow); }
+.avatar-message a { border-color: var(--line); }
+.avatar-message a:first-child, .avatar-restore { color: var(--ink); background: var(--surface-alt); border-color: var(--line); }
+.floating-tag { color: var(--ink); background: var(--surface); border-color: var(--line); }
+.skip { background: var(--surface); }
+[data-theme='dark'] .floating-note { background: #c5e39e; color: #22311b; }
+[data-theme='dark'] .portrait-bottom { text-shadow: none; }
+[data-theme='dark'] .avatar-dismiss:hover, [data-theme='dark'] .avatar-restore:hover { background: #354b2d; color: var(--ink); }
+[data-theme='dark'] .role-content li::marker { color: var(--accent); }
+[data-theme='dark'] .resume-art { background: #cedbc1; }
+@media (max-width: 800px) { .header-actions { gap: 0; } }
+@media (max-width: 600px) {
+  .header { gap: 12px; }
+  .header-actions { margin-left: auto; }
+  .menu-toggle { order: 3; }
+  .theme-toggle { padding: 8px 11px; font-size: 10px; min-height: 40px; }
+  .js-ready .header nav { background: var(--paper); }
+}
+@media print {
+  :root[data-theme='dark'] { --paper: white; --ink: #242821; --muted: #5d6657; --line: #d9dcd0; --accent: #466239; --surface: white; --surface-alt: #f2f3ed; }
+}
+/* Keep button text and background in sync when the theme changes. */
+.button { transition: transform .2s; }
